@@ -56,6 +56,32 @@ class BTNode {
         }
         return false;
     }
+    findMax(){
+        if(this.right==null){
+            return this.val;
+        }else{
+            
+            return this.right.findMax();
+        }
+    }
+    height(){
+        let count=1;
+        var rCount=0;
+        var lCount=0;
+
+        if(this.right!=null){
+            rCount=this.right.height();
+
+        }
+        if(this.left!=null){
+            lCount=this.left.height();
+        }
+        if(rCount>lCount){
+            return rCount+1;
+        }else{
+            return lCount+1;
+        }
+    }
     
 }
 
@@ -64,37 +90,6 @@ class BST {
     this.root = null; 
     }
     
-    add(val){
-        var node=new BTNode(val);
-        if(this.root==null){
-            this.root=node;
-        }else{
-            var runner = this.root;
-            while (runner){
-                if(val>= runner.val){
-                    if(runner.right==null){
-                        runner.right=node;
-                        break;
-                }else{
-                    runner = runner.right;
-                    }
-                }
-                else{
-                    if (runner.left==null){
-                        runner.left=node;
-                        break;
-                    } 
-                    runner = runner.left;
-                    }
-                }
-            }
-
-        
-        console.log(node.val);
-    }
-
-    // Create an add(val) method on the BST object to add new value to the tree. This entails creating a BTNode with this value and connecting it at the appropriate place in the tree. Unless specified otherwise, BSTs can contain duplicate values. 
-
     newAdd(val, index){
         var node=new BTNode(val);
         
@@ -140,6 +135,25 @@ class BST {
             return this.root.search(val);
         }
     }
+
+    max(){
+        if(this.root==null){
+            return null;
+        }else{
+            return this.root.findMax();
+        }
+
+    }
+    isEmpty(){
+        return this.root==null;
+    }
+
+    findHeight(){
+        if(this.root==null){
+            return 0;
+        }
+        return this.root.height();
+    }
 }
     
 
@@ -155,12 +169,17 @@ bSTree.newAdd(255);
 bSTree.newAdd(15);
 bSTree.newAdd(-3); 
 bSTree.newAdd(8);
-console.log(bSTree.root.right.val);
-console.log(bSTree.root.left.val);
-console.log(bSTree.root.val);
-console.log("The min is:"+bSTree.min2());
-console.log(bSTree.size());
-console.log(bSTree.contains(-35));
+bSTree.newAdd(14);
+bSTree.newAdd(13);
+
+// console.log(bSTree.root.right.val);
+// console.log(bSTree.root.left.val);
+// console.log(bSTree.root.val);
+// console.log("The min is:"+bSTree.min2());
+// console.log(bSTree.size());
+// console.log(bSTree.contains(-35));
+console.log("The max is:"+bSTree.max());
+console.log("the height is: "+bSTree.findHeight());
 
 
 
