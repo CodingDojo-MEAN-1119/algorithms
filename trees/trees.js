@@ -19,8 +19,8 @@ class BTNode {
             this.left=node;
             }else{
             this.left.add(node);
+            }
         }
-    }
     }
     min(){
         
@@ -153,7 +153,7 @@ bSTree.newAdd(3);
 bSTree.newAdd(19);
 bSTree.newAdd(255);
 bSTree.newAdd(15);
-bSTree.newAdd(-3);
+bSTree.newAdd(-3); 
 bSTree.newAdd(8);
 console.log(bSTree.root.right.val);
 console.log(bSTree.root.left.val);
