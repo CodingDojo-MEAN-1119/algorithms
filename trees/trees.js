@@ -82,6 +82,30 @@ class BTNode {
             return lCount+1;
         }
     }
+    balance(){        
+        var rCount=0;
+        var lCount=0;
+
+        if(this.right!==null){
+            rCount=this.right.height();
+        }
+        if(this.left!=null){
+            lCount=this.left.height();
+        }
+        if(Math.abs(rCount-lCount) > 1) {
+            return false;            
+        } 
+        var right= true;
+        var left = true;
+
+        if(this.right!==null) {
+            right= this.right.balance();
+        }
+        if(this.left!=null) {
+            left= this.left.balance();
+        }
+        return right && left;
+    } 
     
 }
 
@@ -154,8 +178,13 @@ class BST {
         }
         return this.root.height();
     }
-}
-    
+    isBalanced() {
+        if(this.root ==null) {
+            return true;
+        }
+        return this.root.balance();
+    }
+}    
 
 
 bSTree=new BST();
@@ -171,7 +200,9 @@ bSTree.newAdd(-3);
 bSTree.newAdd(8);
 bSTree.newAdd(14);
 bSTree.newAdd(13);
-
+bSTree.newAdd(6);
+bSTree.newAdd(15);
+bSTree.newAdd(3);
 // console.log(bSTree.root.right.val);
 // console.log(bSTree.root.left.val);
 // console.log(bSTree.root.val);
@@ -180,8 +211,7 @@ bSTree.newAdd(13);
 // console.log(bSTree.contains(-35));
 console.log("The max is:"+bSTree.max());
 console.log("the height is: "+bSTree.findHeight());
-
-
+console.log(bSTree.isBalanced());
 
 
 
