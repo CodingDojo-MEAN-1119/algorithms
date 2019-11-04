@@ -65,22 +65,18 @@ class BTNode {
         }
     }
     height(){
-        let count=1;
+        
         var rCount=0;
         var lCount=0;
 
         if(this.right!=null){
             rCount=this.right.height();
-
         }
         if(this.left!=null){
             lCount=this.left.height();
         }
-        if(rCount>lCount){
-            return rCount+1;
-        }else{
-            return lCount+1;
-        }
+        return (rCount > lCount ? rCount : lCount) + 1;
+       
     }
     
 }
@@ -100,19 +96,7 @@ class BST {
         }
         return this;
     }
-    findMin(){
-        if(this.root==null){
-            return false;
-        }
-        var runner=this.root
-        while(runner){
-            if(runner.left==null){
-                return runner.val;
-            }else{
-                runner=runner.left;
-            }
-        }
-    }    
+     
 
     min2(){
         if(this.root==null){
