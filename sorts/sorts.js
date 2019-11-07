@@ -1,6 +1,4 @@
-// Array: Bubble Sort
 
-// For review, create a function that uses BubbleSort to sort an unsorted array in-place. 
 
 function bubbleSort(a){
     var swapp;
@@ -52,14 +50,17 @@ function InsertionSort(a){
     }
     return a;
 }
-    
-// Create function combineArrs(arr1,arr2) that sorts two already separately sorted arrays, placing the result back into the first provided array. Can you work completely in-place? 
+
 
 function combineArrs(a1,a2){
     let indexA = 0;
     let indexB=0;
     while(indexA<a1.length && indexB<a2.length){
-        if(a2[indexB]<=a1[indexA]){
+        if(a2[indexB]==4){
+            console.log(a2[indexB])
+            console.log(a1[indexA])
+        }
+        if(a2[indexB]<a1[indexA]){
             for (let k=a1.length; k>indexA; k--){
                 a1[k]=a1[k-1];;
             }
@@ -68,26 +69,59 @@ function combineArrs(a1,a2){
         }else{
             indexA++;
         }
-        
+        // console.log(a2);
         for(indexB; indexB<a2.length; indexB++){
             a1.push(a2[indexB]);
+            // console.log(a2[indexB]);
         }
     }    
+    // console.log(a1);
     return a1;
 }
             
-
+//SList: Merge Sort 
+//Use combineLists(list1,list2) to build the mergeSortList(list) algorithm for an unsorted singly linked list. 
+//What are run-time and space complexities of your solution? 
+function  mergeSortArrs(arr) {        
+    if (arr.length<=1) {
+        return arr;
+    }else{
+        let mid = Math.floor(arr.length/2);
+        let lhalf = [];
+        let rhalf = [];
         
+        for (let i = 0; i< mid; i++) {
+            lhalf.push( arr[i]);            
+        }
+        for (let i = mid; i< arr.length; i++) {
+            rhalf.push( arr[i]);        
+        }
+        // console.log(rhalf);
+        let r = mergeSortArrs(rhalf);
+        // console.log(r);
+        let l = mergeSortArrs(lhalf);
+        // console.log(mergeSortArrs(r));
+        return combineArrs(mergeSortArrs(l), mergeSortArrs(r));
+    }  
+}
+
+
+function mergeSort2(a){
+    if(a.length<=1){
+        return a;
+    }else{
+        const mid = Math.floor(a.length/2);
+        const left = a.slice(0,mid);
+        const right = a.slice(mid);
+        return combineArrs(mergeSort2(left),mergeSort2(right));
+    }
+}
+
+      
         
-
-
-        
-
 const a1 = [1,3,5,7,9,11];
 const a2 = [2,4,6,8,10,12,14,16,18];
 
 const a =[3,7,2,8,4,90,13,-115,45];
 
-console.log(combineArrs(a1,a2));
-
-// Create a function that InsertionSort to sort an unsorted array in-place. What is the run-time complexity? What is the space complexity? 
+mergeSortArrs(a);
