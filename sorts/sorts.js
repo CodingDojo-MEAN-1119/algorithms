@@ -17,11 +17,11 @@ function bubbleSort(a){
         }
         n--;
     } while (swapp);
- return a; 
+ return a;
 }
 
 function selectionSort(a){
-    
+
     for(let i=0; i<a.length; i++){
         let min = i;
         for(var j=i+1; j<a.length; j++){
@@ -57,8 +57,7 @@ function combineArrs(a1,a2){
     let indexB=0;
     while(indexA<a1.length && indexB<a2.length){
         if(a2[indexB]==4){
-            console.log(a2[indexB])
-            console.log(a1[indexA])
+
         }
         if(a2[indexB]<a1[indexA]){
             for (let k=a1.length; k>indexA; k--){
@@ -70,31 +69,31 @@ function combineArrs(a1,a2){
             indexA++;
         }
         // console.log(a2);
-        for(indexB; indexB<a2.length; indexB++){
-            a1.push(a2[indexB]);
-            // console.log(a2[indexB]);
-        }
-    }    
-    // console.log(a1);
+    }
+    for(indexB; indexB<a2.length; indexB++){
+        a1.push(a2[indexB]);
+        // console.log(a2[indexB]);
+    }
+      // console.log(a1);
     return a1;
 }
-            
-//SList: Merge Sort 
-//Use combineLists(list1,list2) to build the mergeSortList(list) algorithm for an unsorted singly linked list. 
-//What are run-time and space complexities of your solution? 
-function  mergeSortArrs(arr) {        
+
+//SList: Merge Sort
+//Use combineLists(list1,list2) to build the mergeSortList(list) algorithm for an unsorted singly linked list.
+//What are run-time and space complexities of your solution?
+function  mergeSortArrs(arr) {
     if (arr.length<=1) {
         return arr;
     }else{
         let mid = Math.floor(arr.length/2);
         let lhalf = [];
         let rhalf = [];
-        
+
         for (let i = 0; i< mid; i++) {
-            lhalf.push( arr[i]);            
+            lhalf.push( arr[i]);
         }
         for (let i = mid; i< arr.length; i++) {
-            rhalf.push( arr[i]);        
+            rhalf.push( arr[i]);
         }
         // console.log(rhalf);
         let r = mergeSortArrs(rhalf);
@@ -102,7 +101,7 @@ function  mergeSortArrs(arr) {
         let l = mergeSortArrs(lhalf);
         // console.log(mergeSortArrs(r));
         return combineArrs(mergeSortArrs(l), mergeSortArrs(r));
-    }  
+    }
 }
 
 
@@ -117,11 +116,54 @@ function mergeSort2(a){
     }
 }
 
-      
-        
+// Array: Partition
+
+// Partition unsorted array in-place. Use arr[0] as pivot val; return idx of pivot. Inpu t [5,4,9,2,5,3] becomes [4,2,3,5,9,5] , return 4 .
+function arrPartition(a, start=0, end=a.length-1){
+  let mid = Math.floor((start+end)/2);
+  const pivot =a[mid];
+
+  while( start<=end){
+
+      while(a[start] < pivot){
+        start ++;
+      }
+      while(a[end]> pivot){
+        end --;
+      }
+      if(start<=end){
+        let temp = a[start];
+        a[start]=a[end];
+        a[end]=temp;
+        start++;
+        end --;
+      }
+
+    }
+  // console.log(pivot);
+  return start;
+
+}
+
+function quickSort(a, start=0, end=a.length-1){
+  let result = arrPartition(a, start, end);
+  if(start < result-1){
+    quickSort(a, start, result-1);
+  }
+  if(end> result){
+    quickSort(a, result, end);
+  }
+  return a;
+}
+
+
+
+
+
 const a1 = [1,3,5,7,9,11];
 const a2 = [2,4,6,8,10,12,14,16,18];
 
-const a =[3,7,2,8,4,90,13,-115,45];
+const a =[3];
 
-mergeSortArrs(a);
+// console.log(arrPartition(a));
+console.log(quickSort(a));
