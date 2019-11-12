@@ -56,9 +56,7 @@ function combineArrs(a1,a2){
     let indexA = 0;
     let indexB=0;
     while(indexA<a1.length && indexB<a2.length){
-        if(a2[indexB]==4){
 
-        }
         if(a2[indexB]<a1[indexA]){
             for (let k=a1.length; k>indexA; k--){
                 a1[k]=a1[k-1];;
