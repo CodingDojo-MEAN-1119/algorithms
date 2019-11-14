@@ -63,12 +63,52 @@ function mergeSorted2(a1,a2){
       a1.push(a2[indexB]);
     }
     return a1;
-  }
+}
 
+// Efficiently combine two sorted arrays into an array containing the sorted multiset intersection of the two. Example: given [1,2,2,2,7] and [2,2,6,6,7] , return [2,2,7] .
+
+function intersectArr(a1,a2){
+
+  const multiset = [];
+  let indexA =0;
+  let indexB = 0;
+  while(indexA<a1.length && indexB<a2.length){
+    if(a1[indexA] == a2[indexB]){
+      multiset.push(a1[indexA]);
+      indexA++;
+      indexB++;
+    }else if(a1[indexA]>a2[indexB]){
+      indexB++;
+    }else{
+      indexA++;
+    }
+  }
+  return multiset;
+}
+
+function intersectInPlace(a1,a2){
+  let skip = 0;
+  let indexA =0;
+  let indexB = 0;
+  while(indexA<a1.length && indexB<a2.length){
+    if(a2[indexB]<a1[indexA]){
+      indexB++;
+    }else {
+      if(a1[indexA]<a2[indexB]){
+        skip++;
+      }else{
+        a1[indexA-skip]=a2[indexB];
+        indexB++;
+      }
+        indexA++;
+    }
+  }
+  a1.length=a1.length-skip;
+  return a1;
+}
 
 
 const arr1 =[2,2,6,6,7]
       arr2= [1,2,2,2,7];
-console.log(mergeSorted2(arr1,arr2));
 
-
+console.log(intersectInPlace(arr1,arr2));
