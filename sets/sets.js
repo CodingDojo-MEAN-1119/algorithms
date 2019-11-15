@@ -108,7 +108,46 @@ function intersectInPlace(a1,a2){
 }
 
 
-const arr1 =[2,2,6,6,7]
-      arr2= [1,2,2,2,7];
+// Union Sorted Arrays
 
-console.log(intersectInPlace(arr1,arr2));
+// Efficiently combine two already-sorted arrays into a new sorted array containing the multiset union . Example: given [1,2,2,2,7] and [2,2,6,6,7] , return [1,2,2,2,6,6,7] .
+
+function unionSort(a1,a2) {
+  const unionSet = [];
+  let indexA =0;
+  let indexB = 0;
+  while(indexA<a1.length || indexB<a2.length){
+    if( indexB === a2.length){
+      unionSet.push(...a1.slice(indexA))
+    }
+    else if( indexA === a1.lenth) {
+      unionSet.push(...a2.slice(indexB))
+
+    }
+    else if(a1[indexA] == a2[indexB]){
+      unionSet.push(a1[indexA]);
+      indexA++;
+      indexB++;
+    }
+    else if(a1[indexA] > a2[indexB]){
+      unionSet.push(a2[indexB]);
+      indexB++;
+    }else{
+      unionSet.push(a1[indexA]);
+      indexA++;
+    }
+  }
+  return unionSet;
+
+}
+
+
+// return condition1 ? value1
+// : condition2 ? value2
+// : condition3 ? value3
+// : value4;
+
+const arr2 =[2,2,6,6,7]
+      arr1= [1,2,2,2,7];
+
+console.log(unionSort(arr1,arr2));
