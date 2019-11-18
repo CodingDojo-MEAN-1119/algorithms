@@ -142,11 +142,6 @@ function unionSort(a1,a2) {
 }
 
 
-// return condition1 ? value1
-// : condition2 ? value2
-// : condition3 ? value3
-// : value4;
-
 const arr2 =[2,2,6,6,7]
       arr1= [1,2,2,2,7];
 
