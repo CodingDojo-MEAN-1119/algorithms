@@ -159,9 +159,28 @@ function quickSort(a, start=0, end=a.length-1){
 
 
 const a1 = [1,3,5,7,9,11];
-const a2 = [2,4,6,8,10,12,14,16,18];
+const a2 = [2,4,6,8,10,12,14,16,-18];
 
 const a =[3];
 
 // console.log(arrPartition(a));
-console.log(quickSort(a));
+// console.log(quickSort(a));
+
+
+function mystery(arr){
+  var temp = 0;
+  for(var i=1; i<arr.length; i++){
+      if(arr[i] < arr[temp]){
+          temp = i;
+      }
+  }
+  var result = arr[temp];
+  for(temp; temp<arr.length-1; temp++){
+      arr[temp] = arr[temp+1];
+  }
+  arr.pop();
+  console.log(arr);
+  return result;
+}
+
+console.log(mystery(a2));
